@@ -148,3 +148,6 @@ Hay una guía breve por dependencia en la carpeta [doc](doc):
 - [simplejson](doc/simplejson.md)
 - [Pydantic](doc/pydantic.md)
 - [OmegaConf](doc/omegaconf.md)
+- [Clases abstractas, herencia y polimorfismo](doc/clases-abstractas.md)
+- [Date y datetime](doc/date-datetime.md)
+- [Decimal](doc/decimal.md)
