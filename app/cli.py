@@ -66,3 +66,40 @@ def show():
     print("Data file name:", config.get_data_file_name())
     print("Data file format:", config.get_data_file_format())
 
+@configuration.command(name="initialize")
+def initialize():
+    """
+    Initialize the application by creating the necessary data folder and data file if they do not exist.
+    """
+    # Crear carpeta configuration en la carpeta actual
+    import os
+    import omegaconf
+    from app.utils import create_folder_if_not_exists
+    carpeta_actual = os.getcwd()
+
+    # Crear la ruta completa para la carpeta de configuración
+    carpeta_configuration = os.path.join(carpeta_actual, "configuration")
+    create_folder_if_not_exists(carpeta_configuration)
+
+    # Crear la ruta completa para la carpeta de configuración
+    carpeta_data = os.path.join(carpeta_actual, "data")
+    create_folder_if_not_exists(carpeta_data)
+
+    # Crear un documento yaml y escribir la configuración inicial
+    default_config_path = os.path.join(carpeta_configuration, "default.yaml")
+    
+    if os.path.exists(default_config_path):
+        logger.info("Configuration file 'default.yaml' already exists.")
+        return
+    
+    conf_initial = omegaconf.OmegaConf.create({
+        "data_folder": carpeta_data,
+        "data_file": {
+            "name": "data.json",
+            "format": "json"
+        }
+    })
+    with open(default_config_path, "w") as f:
+        omegaconf.OmegaConf.save(conf_initial, f)
+
+    logger.info("Configuration has been initialized and saved to 'default.yaml'.")
