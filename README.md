@@ -151,3 +151,4 @@ Hay una guía breve por dependencia en la carpeta [doc](doc):
 - [Clases abstractas, herencia y polimorfismo](doc/clases-abstractas.md)
 - [Date y datetime](doc/date-datetime.md)
 - [Decimal](doc/decimal.md)
+- [Playwright](doc/playwright.md)
